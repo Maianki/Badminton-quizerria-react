@@ -1,0 +1,19 @@
+/*CSS VARIABLES*/
+
+:root {
+    --PRIMARY-COLOR: #4B4453;
+    --TEXT-COLOR: #FFF;
+    --TEXT-COLOR-ALTERNATE: #000;
+    --SECONDARY-COLOR: #dbd9dc;
+    --FOOTER-CREDIT-COLOR: #ff9f1c;
+    --SECONDARY-COLOR-2: #534f44;
+    --QUIZ-SCORE-COLOR: #ffb573;
+    --ERROR-COLOR: #EA526F;
+    --SUCCESS-COLOR: #6DA34D;
+}
+
+/*RESET*/
+* {
+    margin: 0;
+    scroll-behavior: smooth;
+}
