@@ -42,7 +42,7 @@ img.hero-img {
 }
 
 .quiz-category {
-    justify-content: space-around;
+    justify-content: space-evenly;
     margin-bottom: 8rem;
     flex-wrap: wrap;
 }

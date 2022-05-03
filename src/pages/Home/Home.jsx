@@ -2,8 +2,29 @@ import React from "react";
 import "./home.css";
 import { heroImg } from "assets";
 import { CategoryCard } from "components";
+import { db } from "firebase-config";
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
 
 export function Home() {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const categoriesCollectionRef = collection(db, "categories");
+    (async () => {
+      try {
+        const data = await getDocs(categoriesCollectionRef);
+        const allCategories = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setCategories(allCategories);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
+
+  console.log(categories);
   return (
     <div>
       <header>
@@ -31,9 +52,9 @@ export function Home() {
           Categories
         </h1>
         <section className='quiz-category flex-row'>
-          <CategoryCard />
-          <CategoryCard />
-          <CategoryCard />
+          {categories.map((category) => (
+            <CategoryCard key={category.id} category={category} />
+          ))}
         </section>
       </main>
     </div>
