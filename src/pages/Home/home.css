@@ -1,0 +1,48 @@
+/*HERO STYLING*/
+
+img.hero-img {
+    object-position: top right;
+    width: 100%;
+    height: calc(100vh - 8rem);
+}
+
+.hero {
+    background: linear-gradient(180deg, var(--PRIMARY-COLOR) 0%, var(--SECONDARY-COLOR) 100%);
+    position: relative;
+}
+
+.hero-inverted-text {
+    color: var(--TEXT-COLOR-ALTERNATE);
+}
+
+.hero .btn-hero-cta {
+    display: block;
+    margin-top: 5rem;
+    width: 25rem;
+}
+
+.hero-heading {
+    font-size: 5.5rem;
+    color: var(--TEXT-COLOR)
+}
+
+.hero-text {
+    position: absolute;
+    top: 28%;
+    left: 4%;
+    color: var(--TEXT-COLOR);
+    max-width: 72rem;
+
+}
+
+/*Categories Styling*/
+
+.category-heading {
+    margin: 4rem auto;
+}
+
+.quiz-category {
+    justify-content: space-around;
+    margin-bottom: 8rem;
+    flex-wrap: wrap;
+}

@@ -1,2 +1,3 @@
 import sitelogo from "./images/site-logo.png";
-export { sitelogo };
+import heroImg from "./images/hero-img.png";
+export { sitelogo, heroImg };
