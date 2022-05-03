@@ -10,12 +10,7 @@ export function CategoryCard({ category: { name, img } }) {
       </div>
       <div className='card-body card-overlay-text btn btn-primary'>{name}</div>
       <div className='card-footer align-items-center'>
-        <Link
-          className='btn btn-primary'
-          to='/'
-          href='./quiz-pages/guessplayer-quiz/rules.html'
-          role='button'
-        >
+        <Link className='btn btn-primary' to='/' role='button'>
           Play Now
         </Link>
       </div>

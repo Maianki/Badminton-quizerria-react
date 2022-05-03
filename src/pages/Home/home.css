@@ -12,7 +12,7 @@ img.hero-img {
 }
 
 .hero-inverted-text {
-    color: var(--TEXT-COLOR-ALTERNATE);
+    color: var(--HERO-TEXT-COlOR);
 }
 
 .hero .btn-hero-cta {
@@ -28,10 +28,10 @@ img.hero-img {
 
 .hero-text {
     position: absolute;
-    top: 28%;
-    left: 4%;
+    top: 22%;
+    left: 22%;
     color: var(--TEXT-COLOR);
-    max-width: 72rem;
+    max-width: 78rem;
 
 }
 

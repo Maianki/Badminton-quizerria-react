@@ -1,14 +1,13 @@
 import React from "react";
 import "./footer.css";
+import { FiTwitter, RiGithubLine } from "assets";
 
 export function Footer() {
   return (
     <footer className='footer flex-column align-items-center'>
       <p className='text-sm'>
-        Made with{" "}
-        <span className='footer-credit'>
-          <i className='fas fa-heart'></i>{" "}
-        </span>
+        Made with
+        <span className='footer-credit'>💕</span>
         by <span className='footer-credit'>Ankit Kumain</span>
       </p>
       <ul className='flex-row footer-links'>
@@ -19,7 +18,7 @@ export function Footer() {
             target='_blank'
             rel='noreferrer'
           >
-            <i className='fab fa-github-square'></i>
+            <RiGithubLine />
           </a>
         </li>
         <li className='list-unstyled'>
@@ -29,7 +28,7 @@ export function Footer() {
             target='_blank'
             rel='noreferrer'
           >
-            <i className='fab fa-twitter'></i>
+            <FiTwitter />
           </a>
         </li>
       </ul>

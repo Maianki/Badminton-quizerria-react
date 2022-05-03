@@ -16,5 +16,15 @@
 
 .navbar-menu {
     width: 50%;
-    justify-content: space-evenly;
+    justify-content: flex-end;
+    padding-right:1rem;
+    }
+    
+    .navbar-menu .menu-link {
+        display: flex;
+        align-items: center;
+    }
+    
+    .menu-link>span {
+        padding-left: 2px;
 }

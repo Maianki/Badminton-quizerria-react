@@ -3,6 +3,7 @@ import "./home.css";
 import { heroImg } from "assets";
 import { CategoryCard } from "components";
 import { db } from "firebase-config";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 
@@ -35,15 +36,15 @@ export function Home() {
               Test your
               <span className='hero-inverted-text'> badminton knowledge </span>
               and prove yourself a badminton
-              <span className='hero-inverted-text'> ninja</span>
+              <span className='hero-inverted-text'> ninja </span>
               <i className='fas fa-user-ninja'></i>
             </h1>
-            <a
-              href='#categories'
+            <Link
+              to='/'
               className='text-center btn btn-primary btn-hero-cta text-xl'
             >
               Take me to quizzes
-            </a>
+            </Link>
           </div>
         </div>
       </header>
