@@ -1,5 +1,4 @@
 import React from "react";
-import "./categorycard.css";
 import { Link } from "react-router-dom";
 
 export function CategoryCard({ category: { name, img } }) {
