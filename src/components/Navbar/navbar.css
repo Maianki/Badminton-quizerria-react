@@ -1,0 +1,30 @@
+/*NAVBAR STYLING*/
+
+.menu-link,
+.footer-menu-link {
+    font-size: 1.6rem;
+    padding: .8rem 1.2rem;
+    transition: all .3s ease;
+    border-radius: 5px;
+}
+
+.menu-link:hover,
+.footer-menu-link:hover {
+    background: var(--TEXT-COLOR);
+    color: var(--TEXT-COLOR-ALTERNATE);
+}
+
+.navbar-menu {
+    width: 50%;
+    justify-content: flex-end;
+    padding-right:1rem;
+    }
+    
+    .navbar-menu .menu-link {
+        display: flex;
+        align-items: center;
+    }
+    
+    .menu-link>span {
+        padding-left: 2px;
+}

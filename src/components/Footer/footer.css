@@ -1,0 +1,24 @@
+/*Footer styling*/
+
+.footer-credit {
+    color: var(--FOOTER-CREDIT-COLOR);
+}
+
+footer>p {
+    padding-bottom: 4px;
+}
+
+.footer {
+    height: 10rem;
+    background-color: var(--PRIMARY-COLOR);
+    color: var(--TEXT-COLOR);
+}
+
+.footer-links {
+    margin: 0;
+}
+
+.footer-menu-link {
+    color: var(--TEXT-COLOR);
+    padding: .6rem 1rem;
+}
