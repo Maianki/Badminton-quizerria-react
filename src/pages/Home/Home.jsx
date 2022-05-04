@@ -25,7 +25,6 @@ export function Home() {
     })();
   }, []);
 
-  console.log(categories);
   return (
     <div>
       <header>
