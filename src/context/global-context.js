@@ -15,7 +15,6 @@ const GlobalProvider = ({ children }) => {
           ...doc.data(),
           id: doc.id,
         }));
-        console.log(allQuizzes);
       } catch (err) {
         console.error(err);
       }
