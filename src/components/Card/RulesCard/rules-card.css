@@ -1,0 +1,19 @@
+.card-rules {
+    min-width: 35rem;
+    background-color: var(--TEXT-COLOR);
+    border-radius: 5px;
+    padding: 1rem;
+    position: relative;
+}
+
+.rules-heading {
+    color: var(--PRIMARY-COLOR);
+}
+
+.quiz-rules {
+    padding: 1.6rem;
+}
+
+.card-footer {
+    justify-content: space-around;
+}

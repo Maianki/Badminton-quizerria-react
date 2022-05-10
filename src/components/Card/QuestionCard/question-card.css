@@ -1,0 +1,39 @@
+/*QUIZ QUESTION STYLING*/
+.quiz-question {
+    color: var(--PRIMARY-COLOR);
+}
+
+.question-option {
+    background-color: var(--SECONDARY-COLOR);
+    color: var(--TEXT-COLOR);
+    margin: 8px 0;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.question-option:hover {
+    background-color: var(--PRIMARY-COLOR);
+}
+
+.question-active {
+    background-color: var(--PRIMARY-COLOR);
+}
+
+
+/*QUESTION CARD STYLING*/
+
+.card-footer .card-btn {
+    margin: 1rem 2rem;
+    background-color: var(--SECONDARY-COLOR-2);
+    border-radius: 5px;
+}
+
+.card-question {
+    background-color: var(--TEXT-COLOR);
+    min-width: 35rem;
+}
+
+.card-horizontal-img {
+    max-height: 22rem;
+}
