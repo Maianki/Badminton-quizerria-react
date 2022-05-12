@@ -14,7 +14,7 @@ export const quizRules = [
   },
   {
     id: uuid(),
-    description: "Correct answer will ,provide 5 points..",
+    description: "Correct answer will, provide 5 points.",
     icon: FcRules,
   },
   {

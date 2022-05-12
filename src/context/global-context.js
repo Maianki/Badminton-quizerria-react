@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useState,
+} from "react";
 import { globalReducer, globalStateInitialValue } from "reducers";
 import { db } from "firebase-config";
 import { collection, getDocs } from "firebase/firestore";
@@ -25,8 +31,15 @@ const GlobalProvider = ({ children }) => {
     globalStateInitialValue
   );
 
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const handleModal = () => {
+    setIsOpenModal((prev) => !prev);
+  };
+
   return (
-    <GlobalContext.Provider value={{ globalState, globalDisptacher }}>
+    <GlobalContext.Provider
+      value={{ globalState, globalDisptacher, isOpenModal, handleModal }}
+    >
       {children}
     </GlobalContext.Provider>
   );

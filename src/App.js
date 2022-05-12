@@ -1,5 +1,5 @@
 import "./App.css";
-import { Navbar, Footer, RulesCard, QuestionCard } from "components";
+import { Navbar, Footer, RulesCard, QuestionCard, Modal } from "components";
 import { Home } from "./pages";
 import { Routes, Route } from "react-router-dom";
 
@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/login' element={<>Login</>}></Route>
-        <Route path='/rules' element={<QuestionCard />}></Route>
+        <Route path='/rules' element={<RulesCard />}></Route>
       </Routes>
       <Footer />
     </div>
