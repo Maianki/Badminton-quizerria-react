@@ -8,6 +8,7 @@ import { collection, getDocs } from "firebase/firestore";
 
 export function Home() {
   const [categories, setCategories] = useState([]);
+
   useEffect(() => {
     const categoriesCollectionRef = collection(db, "categories");
     (async () => {

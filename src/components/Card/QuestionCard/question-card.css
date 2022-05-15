@@ -1,6 +1,7 @@
 /*QUIZ QUESTION STYLING*/
 .quiz-question {
     color: var(--PRIMARY-COLOR);
+    margin: 0 1.4rem;
 }
 
 .question-option {
@@ -12,6 +13,17 @@
     cursor: pointer;
 }
 
+.question-option:active {
+    background-color: var(--PRIMARY-COLOR);
+}
+
+.correct-answer {
+    background-color: var(--PRIMARY-COLOR);
+}
+
+.incorrect-answer {
+    background-color: var(--ERROR-COLOR);
+}
 .question-option:hover {
     background-color: var(--PRIMARY-COLOR);
 }
@@ -24,7 +36,7 @@
 /*QUESTION CARD STYLING*/
 
 .card-footer .card-btn {
-    margin: 1rem 2rem;
+    margin: 1rem 1.6rem;
     background-color: var(--SECONDARY-COLOR-2);
     border-radius: 5px;
 }
@@ -36,4 +48,8 @@
 
 .card-horizontal-img {
     max-height: 22rem;
+}
+.btn-next {
+    justify-content: center;
+    align-items: center;
 }
