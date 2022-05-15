@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import List from "./List/List";
 import { quizRules } from "utils";
 import { CgClose } from "assets";
 import "./rules-card.css";
 import { Modal } from "components";
 import { useGlobal } from "context/global-context";
+import { useNavigate, Link, useParams } from "react-router-dom";
 
 export function RulesCard() {
   const { isOpenModal, handleModal } = useGlobal();
+  const navigate = useNavigate();
+  const { quizId } = useParams();
+
+  useEffect(() => {
+    handleModal(true);
+  }, [handleModal]);
+
+  const btnCloseHandler = () => {
+    handleModal(false);
+    navigate("/");
+  };
   return (
     <>
       {isOpenModal && (
@@ -16,7 +28,7 @@ export function RulesCard() {
             <div className='card-header'>
               <h1 className='text-center  rules-heading'>Rules</h1>
               <span className='card-dismiss'>
-                <CgClose onClick={handleModal} role='button' />
+                <CgClose onClick={btnCloseHandler} role='button' />
               </span>
             </div>
             <div className='card-body align-items-center'>
@@ -29,12 +41,15 @@ export function RulesCard() {
               </ul>
             </div>
             <div className='card-footer flex-row'>
-              <a className='btn btn-outline-primary' href='/'>
+              <button
+                className='btn btn-outline-primary'
+                onClick={btnCloseHandler}
+              >
                 Go back
-              </a>
-              <a className='btn btn-primary' role='button' href='/'>
+              </button>
+              <Link className='btn btn-primary' role='button' to={`/questions/${quizId}/${0}`}>
                 Start Quiz
-              </a>
+              </Link>
             </div>
           </div>
         </Modal>

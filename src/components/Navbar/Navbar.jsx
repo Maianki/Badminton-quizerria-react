@@ -8,7 +8,7 @@ export function Navbar() {
   return (
     <>
       <nav className='navbar flex-row'>
-        <NavLink className='navbar-brand' to='home'>
+        <NavLink className='navbar-brand' to='/'>
           <img
             className='navbar-logo'
             src={sitelogo}

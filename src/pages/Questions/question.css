@@ -1,0 +1,21 @@
+.question-main-container {
+    margin-top: 0;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(180deg, var(--PRIMARY-COLOR) 0%, var(--SECONDARY-COLOR) 100%) center center / cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.question-stats {
+    display: flex;
+    align-items: center;
+    color: var(--SECONDARY-COLOR);
+    justify-content: space-between;
+    width: 30rem;
+}
+
+.question-stats span {
+    color: var(--TEXT-COLOR);
+}

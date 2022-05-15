@@ -1,9 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useGlobal } from "context/global-context";
 
-export function CategoryCard({ category: { name, img } }) {
-  const { handleModal } = useGlobal();
+export function CategoryCard({ category: { name, img, id: quizId } }) {
+  const { globalDisptacher } = useGlobal();
+
+  const navigate = useNavigate();
+  const btnPlayHandler = () => {
+    globalDisptacher({ type: "SET_CURRENT_QUIZ", payload: name });
+    navigate("/rules");
+  };
+
   return (
     <div className='card align-items-center'>
       <div className='card-header'>
@@ -13,9 +20,8 @@ export function CategoryCard({ category: { name, img } }) {
       <div className='card-footer align-items-center'>
         <Link
           className='btn btn-primary'
-          to='/rules'
-          role='button'
-          onClick={handleModal}
+          onClick={btnPlayHandler}
+          to={`/rules/${quizId}`}
         >
           Play Now
         </Link>

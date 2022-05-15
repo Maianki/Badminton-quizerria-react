@@ -1,45 +1,38 @@
 import React from "react";
+import { MdOutlineDoubleArrow } from "assets";
+import Answer from "./Answer/Answer";
 import "./question-card.css";
 
-export function QuestionCard() {
+export function QuestionCard({
+  question: { question, options, image, answer },
+  handleCurrentQuestion,
+}) {
   return (
     <div className='card card-question'>
       <div className='card-header'>
         <img
           className='card-img card-horizontal-img responsive-img'
-          src='../../assets/olympics-logo.jpg'
-          alt='olympic logo'
+          src={image}
+          alt={question}
         />
       </div>
       <div className='card-body'>
-        <h2 className='quiz-question'>
-          Which Indian player won the first Olympic Medal in badminton?
-        </h2>
+        <h2 className='quiz-question'>{question}</h2>
         <ul className='question-options'>
-          <li className='list-unstyled question-option text-center'>
-            Saina Nehwal
-          </li>
-          <li className='list-unstyled question-option question-active text-center'>
-            PV Sindhu
-          </li>
-          <li className='list-unstyled question-option text-center'>
-            Jwala Gutta
-          </li>
-          <li className='list-unstyled question-option text-center'>
-            Sania Mirza
-          </li>
+          {options.map((option) => {
+            return <Answer key={option} option={option} answer={answer} />;
+          })}
         </ul>
       </div>
       <div className='card-footer flex-row'>
-        <a
+        <button
           className='card-btn btn text-center'
-          href='./question-2.html'
-          role='button'
+          onClick={handleCurrentQuestion}
         >
-          <span className='md-ht-1'>
-            NEXT QUESTION <i className='fas fa-angle-double-right'></i>
+          <span className='md-ht-1 flex-row btn-next'>
+            NEXT QUESTION <MdOutlineDoubleArrow />
           </span>
-        </a>
+        </button>
       </div>
     </div>
   );

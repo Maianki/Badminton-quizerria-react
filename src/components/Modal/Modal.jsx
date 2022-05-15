@@ -4,10 +4,10 @@ import { createPortal } from "react-dom";
 import "./modal.css";
 
 export function Modal({ children }) {
-  const { isOpenModal, handleModal } = useGlobal();
+  const { handleModal } = useGlobal();
   return createPortal(
     <div>
-      <div className='overlay' onClick={handleModal}></div>
+      <div className='overlay' onClick={() => handleModal(false)}></div>
       <span></span>
       <div className={"modal-body"}>{children}</div>
     </div>,
