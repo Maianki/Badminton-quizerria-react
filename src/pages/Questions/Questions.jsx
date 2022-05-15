@@ -49,8 +49,10 @@ export function Questions() {
 
   const handleCurrentQuestion = () => {
     setCurrentQuestion((prev) => prev + 1);
-    if (currentQuestion < quizData[0]?.questions.length) {
+    if (currentQuestion < quizData[0]?.questions.length - 1) {
       navigate(`/questions/${quizId}/${parseInt(questionNumber) + 1}`);
+    } else {
+      navigate("/result");
     }
   };
 
@@ -58,31 +60,31 @@ export function Questions() {
     <div className='question-main-container'>
       {loader ? (
         <h1>Loading.......</h1>
-      ) : questions &&
-        questions.length > 0 &&
-        questions.length !== currentQuestion ? (
-        <>
-          <div className='question-stats'>
-            <p>
-              Question:{" "}
-              <span>
-                {Number(questionNumber) + 1} / {questions.length}
-              </span>
-            </p>
-            <p>
-              Score : <span>{score}</span>
-            </p>
-          </div>
-
-          <QuestionCard
-            question={questions[parseInt(questionNumber)]}
-            answer={quizData[0].answer}
-            handleCurrentQuestion={handleCurrentQuestion}
-            questionNumber={currentQuestion}
-          />
-        </>
       ) : (
-        <h1>This will be results page</h1>
+        questions &&
+        questions.length > 0 &&
+        questions.length !== currentQuestion && (
+          <>
+            <div className='question-stats'>
+              <p>
+                Question:{" "}
+                <span>
+                  {Number(questionNumber) + 1} / {questions.length}
+                </span>
+              </p>
+              <p>
+                Score : <span>{score}</span>
+              </p>
+            </div>
+
+            <QuestionCard
+              question={questions[parseInt(questionNumber)]}
+              answer={quizData[0].answer}
+              handleCurrentQuestion={handleCurrentQuestion}
+              questionNumber={Number(questionNumber)}
+            />
+          </>
+        )
       )}
     </div>
   );

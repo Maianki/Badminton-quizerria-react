@@ -6,6 +6,7 @@ import "./question-card.css";
 export function QuestionCard({
   question: { question, options, image, answer },
   handleCurrentQuestion,
+  questionNumber,
 }) {
   return (
     <div className='card card-question'>
@@ -20,7 +21,14 @@ export function QuestionCard({
         <h2 className='quiz-question'>{question}</h2>
         <ul className='question-options'>
           {options.map((option) => {
-            return <Answer key={option} option={option} answer={answer} />;
+            return (
+              <Answer
+                key={option}
+                option={option}
+                answer={answer}
+                questionNumber={questionNumber}
+              />
+            );
           })}
         </ul>
       </div>

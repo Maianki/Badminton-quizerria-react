@@ -1,7 +1,7 @@
 export const globalStateInitialValue = {
   quizData: [],
   currentQuiz: "Guess the Legend",
-  answers: [],
+  answers: {},
   score: 0,
 };
 
@@ -12,9 +12,10 @@ export const globalReducer = (state, { type, payload }) => {
     case "SET_CURRENT_QUIZ":
       return { ...state, currentQuiz: payload };
     case "SET_ANSWERS":
-      return { ...state, answers: [...state.answers, payload] };
+      const { key, value } = payload;
+      return { ...state, answers: { ...state.answers, [key]: value } };
     case "SET_SCORE":
-      return { ...state, score: payload };
+      return { ...state, score: state.score + payload };
     default:
       new Error("Invalid option");
   }

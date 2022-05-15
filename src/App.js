@@ -1,6 +1,6 @@
 import "./App.css";
 import { Navbar, Footer, RulesCard } from "components";
-import { Home, Questions } from "./pages";
+import { Home, Questions, Result } from "./pages";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
           path='/questions/:quizId/:questionNumber'
           element={<Questions />}
         ></Route>
+        <Route path='/result' element={<Result />}></Route>
       </Routes>
       {!["/rules", "/questions"].includes(pathname) && <Footer />}
     </div>
