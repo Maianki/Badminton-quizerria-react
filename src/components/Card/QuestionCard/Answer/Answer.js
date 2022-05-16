@@ -1,14 +1,14 @@
 import React from "react";
 import { useGlobal } from "context/global-context";
+import { useLocation } from "react-router-dom";
 
 export default function Answer({ option, answer, questionNumber }) {
+  const { pathname } = useLocation();
+
   const {
     globalDisptacher,
     globalState: { answers },
   } = useGlobal();
-
-  const selectedClass =
-    option === answers[questionNumber] ? `correct-answer` : ``;
 
   const handleAnswer = (option) => {
     let points = 0;
@@ -26,9 +26,27 @@ export default function Answer({ option, answer, questionNumber }) {
     });
   };
 
+  // for results page
+
+  const isResultPage = pathname === "/result";
+
+  let selectedClass;
+  let errorClass;
+  if (isResultPage) {
+    errorClass =
+      option === answers[questionNumber] && answers[questionNumber] !== answer
+        ? `incorrect-answer`
+        : ``;
+    selectedClass = answer === option ? `correct-answer` : ``;
+  } else {
+    selectedClass = option === answers[questionNumber] ? `correct-answer` : ``;
+  }
+
   return (
     <li
-      className={`list-unstyled question-option text-center ${selectedClass}`}
+      className={`list-unstyled question-option text-center ${selectedClass} ${
+        isResultPage && `pointer-event-none`
+      } ${errorClass}`}
       role='button'
       onClick={() => handleAnswer(option)}
     >

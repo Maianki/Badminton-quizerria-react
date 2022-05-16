@@ -1,7 +1,7 @@
 import React from "react";
 import { resultsImg } from "assets";
 import { Link } from "react-router-dom";
-import { QuestionCard } from "components";
+import { QuestionCard, Navbar, Footer } from "components";
 import { v4 as uuid } from "uuid";
 import "./result.css";
 import { useGlobal } from "context/global-context";
@@ -12,9 +12,10 @@ export function Result() {
   } = useGlobal();
 
   const questions = quizData[0]?.questions;
-  console.log(questions);
+
   return (
     <div>
+      <Navbar />
       <main className='result-main flex-column'>
         <h1 className='result-heading md-btm-2'>Quiz Result </h1>
         <img className='img-result' src={resultsImg} alt='winning poster' />
@@ -24,12 +25,13 @@ export function Result() {
         </h2>
 
         <section className='quiz-answers flex-row'>
-          {questions.map((question) => {
+          {questions.map((question, index) => {
             return (
               <QuestionCard
                 key={uuid()}
                 question={question}
                 answer={quizData[0].answer}
+                questionNumber={index}
               />
             );
           })}
@@ -38,6 +40,7 @@ export function Result() {
           Back to Quizzes
         </Link>
       </main>
+      <Footer />
     </div>
   );
 }

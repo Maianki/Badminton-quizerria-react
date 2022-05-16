@@ -1,13 +1,11 @@
 import "./App.css";
-import { Navbar, Footer, RulesCard } from "components";
-import { Home, Questions, Result } from "./pages";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { RulesCard } from "components";
+import { Home, Questions, Result, PageNotFound } from "./pages";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const { pathname } = useLocation();
   return (
     <div className='App'>
-      {!["/rules"].includes(pathname) && <Navbar />}
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/login' element={<>Login</>}></Route>
@@ -19,8 +17,8 @@ function App() {
           element={<Questions />}
         ></Route>
         <Route path='/result' element={<Result />}></Route>
+        <Route path='*' element={<PageNotFound />}></Route>
       </Routes>
-      {!["/rules", "/questions"].includes(pathname) && <Footer />}
     </div>
   );
 }

@@ -13,6 +13,9 @@
     cursor: pointer;
 }
 
+.pointer-event-none {
+    pointer-events: none;
+}
 .question-option:active {
     background-color: var(--PRIMARY-COLOR);
 }

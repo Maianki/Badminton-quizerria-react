@@ -29,10 +29,6 @@
     background-color: var(--ERROR-COLOR);
 }
 
-/* .question-option {
-    pointer-events: none;
-} */
-
 .quiz-answers {
     margin: 3.2rem 0 3.2rem;
     flex-wrap: wrap;

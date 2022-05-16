@@ -16,6 +16,8 @@ export const globalReducer = (state, { type, payload }) => {
       return { ...state, answers: { ...state.answers, [key]: value } };
     case "SET_SCORE":
       return { ...state, score: state.score + payload };
+    case "SET_INITIAL_STATE":
+      return globalStateInitialValue;
     default:
       new Error("Invalid option");
   }

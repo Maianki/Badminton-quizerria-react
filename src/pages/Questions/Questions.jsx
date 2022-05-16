@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { QuestionCard } from "components";
+import { QuestionCard, Navbar, Footer } from "components";
 import { useGlobal } from "context/global-context";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "firebase-config";
@@ -57,35 +57,39 @@ export function Questions() {
   };
 
   return (
-    <div className='question-main-container'>
-      {loader ? (
-        <h1>Loading.......</h1>
-      ) : (
-        questions &&
-        questions.length > 0 &&
-        questions.length !== currentQuestion && (
-          <>
-            <div className='question-stats'>
-              <p>
-                Question:{" "}
-                <span>
-                  {Number(questionNumber) + 1} / {questions.length}
-                </span>
-              </p>
-              <p>
-                Score : <span>{score}</span>
-              </p>
-            </div>
+    <>
+      <Navbar />
+      <div className='question-main-container'>
+        {loader ? (
+          <h1>Loading.......</h1>
+        ) : (
+          questions &&
+          questions.length > 0 &&
+          questions.length !== currentQuestion && (
+            <>
+              <div className='question-stats'>
+                <p>
+                  Question:{" "}
+                  <span>
+                    {Number(questionNumber) + 1} / {questions.length}
+                  </span>
+                </p>
+                <p>
+                  Score : <span>{score}</span>
+                </p>
+              </div>
 
-            <QuestionCard
-              question={questions[parseInt(questionNumber)]}
-              answer={quizData[0].answer}
-              handleCurrentQuestion={handleCurrentQuestion}
-              questionNumber={Number(questionNumber)}
-            />
-          </>
-        )
-      )}
-    </div>
+              <QuestionCard
+                question={questions[parseInt(questionNumber)]}
+                answer={quizData[0].answer}
+                handleCurrentQuestion={handleCurrentQuestion}
+                questionNumber={Number(questionNumber)}
+              />
+            </>
+          )
+        )}
+      </div>
+      <Footer />
+    </>
   );
 }
