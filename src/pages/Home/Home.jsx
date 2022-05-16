@@ -1,14 +1,15 @@
 import React from "react";
 import "./home.css";
 import { heroImg } from "assets";
-import { CategoryCard } from "components";
+import { CategoryCard, Navbar, Footer } from "components";
 import { db } from "firebase-config";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
+import { useGlobal } from "context/global-context";
 
 export function Home() {
   const [categories, setCategories] = useState([]);
-
+  const { globalDisptacher } = useGlobal();
   useEffect(() => {
     const categoriesCollectionRef = collection(db, "categories");
     (async () => {
@@ -26,8 +27,13 @@ export function Home() {
     })();
   }, []);
 
+  useEffect(() => {
+    globalDisptacher({ type: "SET_INITIAL_STATE" });
+  }, [globalDisptacher]);
+
   return (
     <div>
+      <Navbar />
       <header>
         <div className='hero'>
           <img className='hero-img responsive-img' src={heroImg} alt='hero' />
@@ -57,6 +63,7 @@ export function Home() {
           ))}
         </section>
       </main>
+      <Footer />
     </div>
   );
 }
