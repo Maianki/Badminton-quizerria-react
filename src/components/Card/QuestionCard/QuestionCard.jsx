@@ -46,6 +46,4 @@ export function QuestionCard({
           </button>
         </div>
       )}
-    </div>
-  );
-}
+

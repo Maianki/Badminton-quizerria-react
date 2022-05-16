@@ -1,9 +1,11 @@
 import "./App.css";
+
 import { RulesCard } from "components";
 import { Home, Questions, Result, PageNotFound } from "./pages";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
+  const { pathname } = useLocation();
   return (
     <div className='App'>
       <Routes>
