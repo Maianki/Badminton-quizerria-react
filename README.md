@@ -13,6 +13,7 @@ Badminton Quizzeria is a badminton based quiz. Test your badminton knowledge and
 - Quizzes by category 
 - Rules page
 - Results page
+- Fully responsive
 
 ## Demo
 ![site-demo](https://user-images.githubusercontent.com/28630412/169644584-b931730b-dd58-4858-90d0-cf7640c35e20.gif)
