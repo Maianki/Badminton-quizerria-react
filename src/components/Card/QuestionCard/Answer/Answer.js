@@ -21,8 +21,12 @@ export default function Answer({ option, answer, questionNumber }) {
     option === answer ? (points = 5) : (points = -1);
 
     globalDisptacher({
+      type: "SET_POINTS",
+      payload: { questionNumber, points },
+    });
+
+    globalDisptacher({
       type: "SET_SCORE",
-      payload: points,
     });
   };
 
