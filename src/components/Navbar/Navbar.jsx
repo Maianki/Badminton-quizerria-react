@@ -19,7 +19,7 @@ export function Navbar() {
 
         <ul className='navbar-menu list-unstyled flex-row'>
           <li className='list-inline'>
-            <NavLink className='menu-link' to='home'>
+            <NavLink className='menu-link' to='/'>
               <AiOutlineHome /> <span>Home</span>
             </NavLink>
           </li>
