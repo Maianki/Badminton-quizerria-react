@@ -2,6 +2,7 @@ export const globalStateInitialValue = {
   quizData: [],
   currentQuiz: "Guess the Legend",
   answers: {},
+  points: {},
   score: 0,
 };
 
@@ -14,8 +15,20 @@ export const globalReducer = (state, { type, payload }) => {
     case "SET_ANSWERS":
       const { key, value } = payload;
       return { ...state, answers: { ...state.answers, [key]: value } };
+    case "SET_POINTS":
+      const { questionNumber, points } = payload;
+      return {
+        ...state,
+        points: { ...state.points, [questionNumber]: points },
+      };
     case "SET_SCORE":
-      return { ...state, score: state.score + payload };
+      return {
+        ...state,
+        score: Object.values(state.points).reduce(
+          (acc, curr) => (acc += curr),
+          0
+        ),
+      };
     case "SET_INITIAL_STATE":
       return globalStateInitialValue;
     default:

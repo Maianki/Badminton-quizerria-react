@@ -15,7 +15,6 @@ export function Questions() {
 
   const navigate = useNavigate();
   const { quizId, questionNumber } = useParams();
-
   useEffect(() => {
     const quizzesCollectionRef = collection(db, "quizzes");
     const myQuery = query(
@@ -45,11 +44,8 @@ export function Questions() {
 
   const questions = quizData[0]?.questions;
 
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-
   const handleCurrentQuestion = () => {
-    setCurrentQuestion((prev) => prev + 1);
-    if (currentQuestion < quizData[0]?.questions.length - 1) {
+    if (questionNumber < quizData[0]?.questions.length - 1) {
       navigate(`/questions/${quizId}/${parseInt(questionNumber) + 1}`);
     } else {
       navigate("/result");
@@ -65,7 +61,7 @@ export function Questions() {
         ) : (
           questions &&
           questions.length > 0 &&
-          questions.length !== currentQuestion && (
+          questions.length !== questionNumber && (
             <>
               <div className='question-stats'>
                 <p>
@@ -91,6 +87,5 @@ export function Questions() {
       </div>
       <Footer />
     </>
-
   );
 }
