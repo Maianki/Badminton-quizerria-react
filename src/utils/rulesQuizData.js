@@ -22,9 +22,4 @@ export const quizRules = [
     description: "Incorrect answer will deduct 1 point.",
     icon: FcRules,
   },
-  {
-    id: uuid(),
-    description: "To unlock new level you have to score 75%.",
-    icon: FcRules,
-  },
 ];

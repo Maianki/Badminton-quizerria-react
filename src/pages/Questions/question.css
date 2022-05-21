@@ -5,6 +5,7 @@
     background: linear-gradient(180deg, var(--PRIMARY-COLOR) 0%, var(--SECONDARY-COLOR) 100%) center center / cover no-repeat;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 

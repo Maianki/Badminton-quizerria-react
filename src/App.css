@@ -1,2 +1,23 @@
 @import url("index.css");
 @import url('https://shuttleui.netlify.app/components/components-styles/shuttleUI-main.css');
+@media screen and (min-width: 600px) {
+    html {
+        font-size: 62.5%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    html {
+        font-size: 48%;
+    }
+
+    .card-rules {
+        min-width: 30rem;
+    }
+}
