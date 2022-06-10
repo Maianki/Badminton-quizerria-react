@@ -10,6 +10,7 @@ import { useGlobal } from "context/global-context";
 export function Home() {
   const [categories, setCategories] = useState([]);
   const { globalDisptacher } = useGlobal();
+
   useEffect(() => {
     const categoriesCollectionRef = collection(db, "categories");
     (async () => {

@@ -1,0 +1,17 @@
+/*CSS for page layout*/
+.signup-container {
+  display: grid;
+  height: calc(100vh - 8rem);
+  grid-template-rows: 1fr auto;
+}
+
+.signup-main {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  margin-top: 0;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(180deg, var(--PRIMARY-COLOR) 0%, var(--SECONDARY-COLOR) 100%) center center / cover no-repeat;
+  justify-content: center;
+  align-items: center;
+}
