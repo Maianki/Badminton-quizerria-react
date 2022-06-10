@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { createContext, useContext } from "react";
+import { toast } from "react-toastify";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -21,10 +22,10 @@ export const AuthProvider = ({ children }) => {
     console.log("Called");
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-
       navigate(location?.state?.from?.pathname || "/");
+      toast.success("Account created. You are logged in.");
     } catch (err) {
-      console.log(err.message);
+      toast.error(err.message);
     }
   };
 
@@ -33,7 +34,10 @@ export const AuthProvider = ({ children }) => {
       await signInWithEmailAndPassword(auth, email, password);
 
       navigate(location?.state?.from?.pathname || "/");
-    } catch (err) {}
+      toast.success("You are logged in.");
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   const logout = async () => {
@@ -41,8 +45,9 @@ export const AuthProvider = ({ children }) => {
       await signOut(auth);
       setUser(null);
       navigate("/");
+      toast.success("You are logged out.");
     } catch (err) {
-      console.error(err.message);
+      toast.error(err.message);
     }
   };
 

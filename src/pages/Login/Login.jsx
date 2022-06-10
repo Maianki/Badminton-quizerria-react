@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { Navbar, Input, Label } from "components";
 import { Link } from "react-router-dom";
 import { useAuth } from "context";
+import { toast } from "react-toastify";
 import { AiFillEyeInvisible, AiFillEye } from "assets";
 import "./login.css";
 
 export function Login() {
   const { login, user } = useAuth();
-
-  console.log(user);
 
   const [userDetails, setUserDetails] = useState({
     email: "",

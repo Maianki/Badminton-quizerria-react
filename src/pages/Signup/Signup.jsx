@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { Input, Label, Navbar } from "components";
 import { Link } from "react-router-dom";
 import { AiFillEyeInvisible, AiFillEye } from "assets";
@@ -26,16 +27,20 @@ export function Signup() {
     e.preventDefault();
 
     if (userDetails.password === userDetails.confirmPassword) {
-      signup(userDetails.email, userDetails.password);
+      if (userDetails.password.length >= 6) {
+        signup(userDetails.email, userDetails.password);
 
-      setUserDetails({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        termsAndCondition: "",
-      });
+        setUserDetails({
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+          termsAndCondition: "",
+        });
+      } else {
+        toast.error("Passwords length should be greater than equal to 6");
+      }
     } else {
     }
   };
