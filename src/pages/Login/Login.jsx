@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Navbar, Input, Label } from "components";
 import { Link } from "react-router-dom";
 import { useAuth } from "context";
-import { toast } from "react-toastify";
+import { ThreeDots } from "react-loader-spinner";
 import { AiFillEyeInvisible, AiFillEye } from "assets";
+
 import "./login.css";
 
 export function Login() {
-  const { login, user } = useAuth();
+  const { login, user, loader } = useAuth();
 
   const [userDetails, setUserDetails] = useState({
     email: "",
@@ -93,17 +94,29 @@ export function Login() {
               </Link>
             </div>
 
-            <div className='flex-column '>
-              <input
-                type='submit'
-                className='btn btn-primary form-btn text-center'
-                value='sign in'
-              />
+            <div className='flex-column'>
+              {loader ? (
+                <div className='loader'>
+                  <ThreeDots color='#00BFFF' height={20} width={40} />
+                </div>
+              ) : (
+                <input
+                  type='submit'
+                  className='btn btn-primary form-btn text-center'
+                  value='Sign In'
+                />
+              )}
               <button
                 onClick={guestLoginHandler}
                 className='btn btn-secondary form-btn text-center'
               >
-                Guest login
+                {loader ? (
+                  <div className='loader'>
+                    <ThreeDots color='#00BFFF' height={20} width={40} />
+                  </div>
+                ) : (
+                  `Guest Login`
+                )}
               </button>
               <p className='text-sm text-center text-bold-500 text-primary form-link-text'>
                 New to shuttle shopy ?

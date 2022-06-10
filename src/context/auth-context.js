@@ -17,11 +17,13 @@ export const AuthProvider = ({ children }) => {
   const location = useLocation();
 
   const [user, setUser] = useState(null);
+  const [loader, setLoader] = useState(false);
 
   const signup = async (email, password) => {
-    console.log("Called");
+    setLoader(true);
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+      setLoader(false);
       navigate(location?.state?.from?.pathname || "/");
       toast.success("Account created. You are logged in.");
     } catch (err) {
@@ -30,9 +32,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
+    setLoader(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-
+      setLoader(false);
       navigate(location?.state?.from?.pathname || "/");
       toast.success("You are logged in.");
     } catch (err) {
@@ -58,7 +61,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, signup, logout, login }}>
+    <AuthContext.Provider value={{ user, signup, logout, login, loader }}>
       {children}
     </AuthContext.Provider>
   );

@@ -3,11 +3,12 @@ import { toast } from "react-toastify";
 import { Input, Label, Navbar } from "components";
 import { Link } from "react-router-dom";
 import { AiFillEyeInvisible, AiFillEye } from "assets";
+import { ThreeDots } from "react-loader-spinner";
 import "./sign-up.css";
 import { useAuth } from "context";
 
 export function Signup() {
-  const { signup } = useAuth();
+  const { signup, loader } = useAuth();
 
   const [userDetails, setUserDetails] = useState({
     firstName: "",
@@ -168,8 +169,15 @@ export function Signup() {
 
             <div className='flex-column'>
               <button type='submit' className='btn btn-primary form-btn'>
-                Sign up
+                {loader ? (
+                  <div className='loader'>
+                    <ThreeDots color='#00BFFF' height={20} width={40} />
+                  </div>
+                ) : (
+                  `Sign up`
+                )}
               </button>
+
               <p className='text-sm text-center text-bold-500 text-primary form-link-text'>
                 Existing user ?
                 <Link className='text-primary pd-ht-1' to='/login'>
