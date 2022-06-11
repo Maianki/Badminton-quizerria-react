@@ -5,11 +5,13 @@ import { CategoryCard, Navbar, Footer } from "components";
 import { db } from "firebase-config";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
+import { ThreeDots } from "react-loader-spinner";
 import { useGlobal } from "context/global-context";
 
 export function Home() {
   const [categories, setCategories] = useState([]);
   const { globalDisptacher } = useGlobal();
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
     const categoriesCollectionRef = collection(db, "categories");
@@ -21,6 +23,7 @@ export function Home() {
           id: doc.id,
         }));
 
+        setLoader(false);
         setCategories(allCategories);
       } catch (err) {
         console.error(err);
@@ -59,9 +62,13 @@ export function Home() {
           Categories
         </h1>
         <section className='quiz-category flex-row'>
-          {categories.map((category) => (
-            <CategoryCard key={category.id} category={category} />
-          ))}
+          {!loader ? (
+            categories.map((category) => (
+              <CategoryCard key={category.id} category={category} />
+            ))
+          ) : (
+            <ThreeDots color='#00BFFF' height={100} width={100} />
+          )}
         </section>
       </main>
       <Footer />

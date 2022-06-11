@@ -12,6 +12,7 @@ function App() {
         position='top-right'
         autoClose={1000}
         hideProgressBar={false}
+        style={{ fontSize: "1.6rem" }}
         newestOnTop={false}
         closeOnClick
         rtl={false}
