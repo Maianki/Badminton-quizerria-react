@@ -46,6 +46,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await signOut(auth);
+
       setUser(null);
       navigate("/");
       toast.success("You are logged out.");
