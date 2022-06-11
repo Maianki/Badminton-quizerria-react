@@ -4,6 +4,7 @@ import { useGlobal } from "context/global-context";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "firebase-config";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import { ThreeDots } from "react-loader-spinner";
 import "./question.css";
 
 export function Questions() {
@@ -57,7 +58,9 @@ export function Questions() {
       <Navbar />
       <div className='question-main-container'>
         {loader ? (
-          <h1>Loading.......</h1>
+          <h1>
+            <ThreeDots color='#00BFFF' height={100} width={100} />
+          </h1>
         ) : (
           questions &&
           questions.length > 0 &&

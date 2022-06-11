@@ -2,9 +2,11 @@ import React from "react";
 import "./navbar.css";
 import { sitelogo } from "assets";
 import { NavLink } from "react-router-dom";
-import { AiOutlineHome, BiLogIn } from "assets";
+import { useAuth } from "context";
+import { AiOutlineHome, BiLogIn, BiLogOut } from "assets";
 
 export function Navbar() {
+  const { logout, user } = useAuth();
   return (
     <>
       <nav className='navbar flex-row'>
@@ -24,10 +26,17 @@ export function Navbar() {
             </NavLink>
           </li>
           <li className='list-inline'>
-            <NavLink className='menu-link' to='login'>
-              <BiLogIn />
-              <span> Login</span>
-            </NavLink>
+            {user ? (
+              <NavLink className='menu-link' to='/' onClick={logout}>
+                <BiLogOut />
+                <span> Logout</span>
+              </NavLink>
+            ) : (
+              <NavLink className='menu-link' to='login'>
+                <BiLogIn />
+                <span> Login</span>
+              </NavLink>
+            )}
           </li>
         </ul>
       </nav>
