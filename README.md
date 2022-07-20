@@ -5,7 +5,7 @@
 </div>
 
 ## Badminton Quizzeria
-Badminton Quizzeria is a badminton based quiz. Test your badminton knowledge and prove yourself a badminton ninja. The website is built on react, CSS, react-router, firebase and has used [Shuttle UI](https://shuttleui.netlify.app/) components.
+Badminton Quizzeria is a badminton based quiz. Test your badminton knowledge and prove yourself a badminton ninja. The website is built on react, typescript, CSS, react-router, firebase and has used [Shuttle UI](https://shuttleui.netlify.app/) components.
 
 ## Pages included in  Badminton Quizzeria
 
