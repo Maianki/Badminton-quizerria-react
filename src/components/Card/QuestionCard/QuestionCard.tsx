@@ -4,12 +4,25 @@ import Answer from "./Answer/Answer";
 import "./question-card.css";
 import { useLocation } from "react-router-dom";
 
+type QuestionCardProps = {
+  question:{
+    question:string,
+    options:string[],
+    image:string,
+    answer:string
+  },
+  answer?:string,
+  questionNumber:number,
+  handleCurrentQuestion ? : () => void
+}
 export function QuestionCard({
   question: { question, options, image, answer },
   handleCurrentQuestion,
   questionNumber,
-}) {
+} : QuestionCardProps) {
+
   const { pathname } = useLocation();
+  
   return (
     <div className='card card-question'>
       <div className='card-header'>
@@ -22,7 +35,7 @@ export function QuestionCard({
       <div className='card-body'>
         <h2 className='quiz-question'>{question}</h2>
         <ul className='question-options'>
-          {options.map((option) => {
+          {options.map((option:string) => {
             return (
               <Answer
                 key={option}

@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { Input, Label, Navbar } from "components";
 import { Link } from "react-router-dom";
 import { AiFillEyeInvisible, AiFillEye } from "assets";
+import { UserSignupState ,UserLoginState} from "types";
 import { ThreeDots } from "react-loader-spinner";
 import "./sign-up.css";
 import { useAuth } from "context";
@@ -10,13 +11,12 @@ import { useAuth } from "context";
 export function Signup() {
   const { signup, loader } = useAuth();
 
-  const [userDetails, setUserDetails] = useState({
+  const [userDetails, setUserDetails] = useState<UserSignupState | UserLoginState>({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    confirmPassword: "",
-    termsAndCondition: true,
+    confirmPassword: ""
   });
 
   const [showPassWord, setShowPassword] = useState({
@@ -24,7 +24,7 @@ export function Signup() {
     confirmPassword: false,
   });
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
     if (userDetails.password === userDetails.confirmPassword) {
@@ -36,8 +36,7 @@ export function Signup() {
           lastName: "",
           email: "",
           password: "",
-          confirmPassword: "",
-          termsAndCondition: "",
+          confirmPassword: ""
         });
       } else {
         toast.error("Passwords length should be greater than equal to 6");
@@ -143,28 +142,6 @@ export function Signup() {
                 )}
                 <i className='fas fa-eye'></i>
               </span>
-            </div>
-
-            <div className='form-check md-vt-1 flex-row'>
-              <input
-                type='checkbox'
-                value='demo'
-                name='termsAndCondition'
-                id='terms-and-conditions'
-                checked={userDetails.termsAndCondition}
-                onChange={(e) =>
-                  setUserDetails({
-                    ...userDetails,
-                    termsAndCondition: !userDetails.termsAndCondition,
-                  })
-                }
-              />
-              <label
-                className='form-label-inline text-sm text-primary'
-                htmlFor='terms-and-conditions'
-              >
-                I accept all terms and conditions.
-              </label>
             </div>
 
             <div className='flex-column'>

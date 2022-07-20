@@ -1,6 +1,6 @@
 import React from "react";
 import "./page-not-found.css";
-import notFoundImg from "../../assets/images/404.svg";
+import {notFoundImg} from "assets";
 
 export function PageNotFound() {
   return (

@@ -1,4 +1,16 @@
 import React from "react";
+import { UserLoginState, UserSignupState } from "types";
+
+type InputProps = {
+  type: 'text' | 'password' | 'email' ,
+  id: string,
+  name: string,
+  placeholder: string,
+  isRequired?: boolean,
+  value: string |undefined,
+  userDetails : UserLoginState | UserSignupState,
+  setUserDetails: React.Dispatch<React.SetStateAction<UserLoginState | UserSignupState >>
+}
 
 export function Input({
   type,
@@ -9,9 +21,9 @@ export function Input({
   value,
   setUserDetails,
   userDetails,
-  pattern = "false",
-}) {
-  const changeHandler = (e) => {
+} : InputProps) {
+
+  const changeHandler = (e : React.ChangeEvent<HTMLInputElement>) : void => {
     setUserDetails({ ...userDetails, [e.target.name]: e.target.value });
   };
 
@@ -25,7 +37,6 @@ export function Input({
       placeholder={placeholder}
       required={isRequired}
       onChange={changeHandler}
-      pattern={pattern?.length > 0 && pattern !== "false" ? pattern : undefined}
     />
   );
 }

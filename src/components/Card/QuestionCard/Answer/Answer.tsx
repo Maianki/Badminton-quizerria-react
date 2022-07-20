@@ -2,23 +2,30 @@ import React from "react";
 import { useGlobal } from "context/global-context";
 import { useLocation } from "react-router-dom";
 
-export default function Answer({ option, answer, questionNumber }) {
-  const { pathname } = useLocation();
+type AnswerProps = {
+  option:string,
+  answer:string,
+  questionNumber:number
+}
 
+export default function Answer({ option, answer, questionNumber }:AnswerProps) {
+  const { pathname } = useLocation();
+   
   const {
     globalDisptacher,
     globalState: { answers },
   } = useGlobal();
 
-  const handleAnswer = (option) => {
+  const handleAnswer = (option:string) => {
+   
     let points = 0;
+    option === answer ? (points = 5) : (points = -1);
 
     globalDisptacher({
       type: "SET_ANSWERS",
       payload: { key: questionNumber, value: option },
     });
 
-    option === answer ? (points = 5) : (points = -1);
 
     globalDisptacher({
       type: "SET_POINTS",
@@ -32,18 +39,19 @@ export default function Answer({ option, answer, questionNumber }) {
 
   // for results page
 
-  const isResultPage = pathname === "/result";
+  const isResultPage:boolean = pathname === "/result";
 
-  let selectedClass;
-  let errorClass;
+  let selectedClass : string | undefined;
+  let errorClass : string | undefined;
+
   if (isResultPage) {
     errorClass =
-      option === answers[questionNumber] && answers[questionNumber] !== answer
+      option === answers[questionNumber as keyof typeof answers] && answers[questionNumber as keyof typeof answers] !== answer
         ? `incorrect-answer`
         : ``;
     selectedClass = answer === option ? `correct-answer` : ``;
   } else {
-    selectedClass = option === answers[questionNumber] ? `correct-answer` : ``;
+    selectedClass = option === answers[questionNumber as keyof typeof answers] ? `correct-answer` : ``;
   }
 
   return (
