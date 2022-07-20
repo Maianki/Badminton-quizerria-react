@@ -5,11 +5,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { db } from "firebase-config";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { ThreeDots } from "react-loader-spinner";
+import { QuizType } from "types";
 import "./question.css";
 
 export function Questions() {
   const {
-    globalState: { quizData, currentQuiz, score },
+    globalState: { quizData, currentQuiz },
     globalDisptacher,
   } = useGlobal();
   const [loader, setLoader] = useState(true);
@@ -26,6 +27,7 @@ export function Questions() {
     (async () => {
       try {
         const data = await getDocs(myQuery);
+
         const allQuizzes = data.docs.map((doc) => ({
           ...doc.data(),
           id: doc.id,
@@ -33,7 +35,7 @@ export function Questions() {
 
         globalDisptacher({
           type: "SET_QUIZ_DATA",
-          payload: allQuizzes,
+          payload: allQuizzes as unknown as QuizType[],
         });
       } catch (err) {
         console.error(err);
@@ -46,8 +48,8 @@ export function Questions() {
   const questions = quizData[0]?.questions;
 
   const handleCurrentQuestion = () => {
-    if (questionNumber < quizData[0]?.questions.length - 1) {
-      navigate(`/questions/${quizId}/${parseInt(questionNumber) + 1}`);
+    if (Number(questionNumber) < quizData[0]?.questions.length - 1) {
+      navigate(`/questions/${quizId}/${parseInt(questionNumber as string) + 1}`);
     } else {
       navigate("/result");
     }
@@ -64,23 +66,19 @@ export function Questions() {
         ) : (
           questions &&
           questions.length > 0 &&
-          questions.length !== questionNumber && (
+          questions.length !== Number(questionNumber) && (
             <>
               <div className='question-stats'>
                 <p>
-                  Question:{" "}
+                  Question:
                   <span>
                     {Number(questionNumber) + 1} / {questions.length}
                   </span>
                 </p>
-                <p>
-                  Score : <span>{score}</span>
-                </p>
               </div>
 
               <QuestionCard
-                question={questions[parseInt(questionNumber)]}
-                answer={quizData[0].answer}
+                question={questions[parseInt(questionNumber as string)]}
                 handleCurrentQuestion={handleCurrentQuestion}
                 questionNumber={Number(questionNumber)}
               />

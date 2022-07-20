@@ -4,26 +4,26 @@ import { Link } from "react-router-dom";
 import { useAuth } from "context";
 import { ThreeDots } from "react-loader-spinner";
 import { AiFillEyeInvisible, AiFillEye } from "assets";
+import { UserLoginState } from "types";
 
 import "./login.css";
 
 export function Login() {
-  const { login, user, loader } = useAuth();
+  const { login, loader } = useAuth();
 
-  const [userDetails, setUserDetails] = useState({
+  const [userDetails, setUserDetails] = useState<UserLoginState>({
     email: "",
-    password: "",
-    isRememberMe: true,
+    password: ""
   });
 
   const [showPassWord, setShowPassword] = useState(false);
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     login(userDetails.email, userDetails.password);
   };
 
-  const guestLoginHandler = (e) => {
+  const guestLoginHandler = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     login("guestuser@gmail.com", "guest@123");
   };
@@ -65,33 +65,6 @@ export function Login() {
               >
                 {showPassWord ? <AiFillEye /> : <AiFillEyeInvisible />}
               </span>
-            </div>
-
-            <div className='form-check md-vt-1 flex-row'>
-              <input
-                type='checkbox'
-                checked={userDetails.isRememberMe}
-                onChange={() =>
-                  setUserDetails({
-                    ...userDetails,
-                    isRememberMe: !userDetails.isRememberMe,
-                  })
-                }
-                id='remember-me'
-              />
-              <label
-                className='form-label-inline text-sm text-primary'
-                htmlFor='remember-me'
-              >
-                Remember Me
-              </label>
-              <Link
-                className='text-sm text-bold-500 forgot-password'
-                to='forgot-pwd'
-                role='button'
-              >
-                Forgot Your password
-              </Link>
             </div>
 
             <div className='flex-column'>

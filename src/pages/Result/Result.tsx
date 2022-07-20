@@ -30,7 +30,6 @@ export function Result() {
               <QuestionCard
                 key={uuid()}
                 question={question}
-                answer={quizData[0].answer}
                 questionNumber={index}
               />
             );

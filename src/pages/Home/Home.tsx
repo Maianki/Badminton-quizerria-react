@@ -8,8 +8,13 @@ import { collection, getDocs } from "firebase/firestore";
 import { ThreeDots } from "react-loader-spinner";
 import { useGlobal } from "context/global-context";
 
+type CategoryType = {
+  id:string,
+  img:string,
+  name: "Guess the Legend" | "Olympics Special" | "Badminton Trivia"
+}
 export function Home() {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
   const { globalDisptacher } = useGlobal();
   const [loader, setLoader] = useState(true);
 
@@ -24,7 +29,7 @@ export function Home() {
         }));
 
         setLoader(false);
-        setCategories(allCategories);
+        setCategories(allCategories as unknown as CategoryType[]);
       } catch (err) {
         console.error(err);
       }

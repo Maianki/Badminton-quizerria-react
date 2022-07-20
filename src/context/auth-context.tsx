@@ -7,38 +7,55 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const AuthContext = createContext(null);
+type User = {
+  email : string | null | undefined,
+  id:string | null | undefined
+}
 
-export const AuthProvider = ({ children }) => {
+type AuthContextType = {
+  user : User, 
+  signup : (email: string,password:string)=>void,
+  logout : ()=>void,
+  login : (email: string,password:string)=>void, 
+  loader : boolean
+}
+
+type AuthContextProviderType = {
+  children : React.ReactNode
+}
+
+const AuthContext = createContext({} as AuthContextType);
+
+export const AuthProvider = ({ children }:AuthContextProviderType) => {
   const auth = getAuth();
   const navigate = useNavigate();
-  const location = useLocation();
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User>({email:"",id:null});
   const [loader, setLoader] = useState(false);
 
-  const signup = async (email, password) => {
+  const signup = async (email:string, password:string) => {
     setLoader(true);
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       setLoader(false);
-      navigate(location?.state?.from?.pathname || "/");
+      
       toast.success("Account created. You are logged in.");
-    } catch (err) {
+    } catch (err:any) {
       toast.error(err.message);
     }
   };
 
-  const login = async (email, password) => {
+  const login = async (email:string, password:string) => {
     setLoader(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setLoader(false);
-      navigate(location?.state?.from?.pathname || "/");
+      
       toast.success("You are logged in.");
-    } catch (err) {
+    } catch (err:any) {
+      console.log(err)
       toast.error(err.message);
     }
   };
@@ -47,22 +64,24 @@ export const AuthProvider = ({ children }) => {
     try {
       await signOut(auth);
 
-      setUser(null);
+      setUser({email:"",id:null});
       navigate("/");
       toast.success("You are logged out.");
-    } catch (err) {
+    } catch (err:any) {
+      console.log(err)
       toast.error(err.message);
     }
   };
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      setUser(user);
+      setUser({email:user?.email,id:user?.uid});
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, signup, logout, login, loader }}>
+    <AuthContext.Provider value={{ user, signup, logout, login, loader}}>
       {children}
     </AuthContext.Provider>
   );
