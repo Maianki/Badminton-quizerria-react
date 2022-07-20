@@ -4,7 +4,16 @@ import { useGlobal } from "context/global-context";
 import { toast } from "react-toastify";
 import { useAuth } from "context";
 
-export function CategoryCard({ category: { name, img, id: quizId } }) {
+type CategoryCardProps = {
+  category: {
+    id: string,
+    img: string,
+    name: string,
+  }
+};
+
+export function CategoryCard({ category }: CategoryCardProps) {
+  const { id: quizId, img, name} = category;
   const { globalDisptacher } = useGlobal();
   const { user } = useAuth();
 
@@ -12,7 +21,7 @@ export function CategoryCard({ category: { name, img, id: quizId } }) {
 
   const btnPlayHandler = () => {
     globalDisptacher({ type: "SET_CURRENT_QUIZ", payload: name });
-    if (!user) {
+    if (!user.id) {
       toast.error("Log in to play quiz");
     }
     navigate("/rules");

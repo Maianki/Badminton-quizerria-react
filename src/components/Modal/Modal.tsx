@@ -3,7 +3,7 @@ import React from "react";
 import { createPortal } from "react-dom";
 import "./modal.css";
 
-export function Modal({ children }) {
+export function Modal({ children }:{children:React.ReactNode}) {
   const { handleModal } = useGlobal();
   return createPortal(
     <div>
@@ -11,6 +11,6 @@ export function Modal({ children }) {
       <span></span>
       <div className={"modal-body"}>{children}</div>
     </div>,
-    document.getElementById("modal-root")
+    document.getElementById("modal-root")!
   );
 }

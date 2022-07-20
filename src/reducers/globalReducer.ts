@@ -1,4 +1,6 @@
-export const globalStateInitialValue = {
+import { GlobalStateType ,ActionTypes} from "types";
+
+export const globalStateInitialValue:GlobalStateType = {
   quizData: [],
   currentQuiz: "Guess the Legend",
   answers: {},
@@ -6,7 +8,8 @@ export const globalStateInitialValue = {
   score: 0,
 };
 
-export const globalReducer = (state, { type, payload }) => {
+export const globalReducer = (state : GlobalStateType, action: ActionTypes) : GlobalStateType => {
+  const { type, payload } = action;
   switch (type) {
     case "SET_QUIZ_DATA":
       return { ...state, quizData: payload };
@@ -32,6 +35,6 @@ export const globalReducer = (state, { type, payload }) => {
     case "SET_INITIAL_STATE":
       return globalStateInitialValue;
     default:
-      new Error("Invalid option");
+      return state;
   }
 };
