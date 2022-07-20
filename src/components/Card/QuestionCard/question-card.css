@@ -5,7 +5,7 @@
 }
 
 .question-option {
-    background-color: var(--SECONDARY-COLOR);
+    background-color: var(--QUIZ-OPTION-COLOR);
     color: var(--TEXT-COLOR);
     margin: 8px 0;
     padding: 8px;
