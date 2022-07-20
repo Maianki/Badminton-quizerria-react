@@ -1,13 +1,20 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useGlobal } from "context/global-context";
+import { toast } from "react-toastify";
+import { useAuth } from "context";
 
 export function CategoryCard({ category: { name, img, id: quizId } }) {
   const { globalDisptacher } = useGlobal();
+  const { user } = useAuth();
 
   const navigate = useNavigate();
+
   const btnPlayHandler = () => {
     globalDisptacher({ type: "SET_CURRENT_QUIZ", payload: name });
+    if (!user) {
+      toast.error("Log in to play quiz");
+    }
     navigate("/rules");
   };
 
